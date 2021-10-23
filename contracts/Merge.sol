@@ -11,6 +11,7 @@ contract Merge {
     ERC20 public ERC20Interface;
 
     struct Issue {
+        address creator;
         string gitHubLink;
         string company;
         uint32 bountyValue;
@@ -52,7 +53,7 @@ contract Merge {
         ERC20Interface.transferFrom(msg.sender, address(this), bountyValue);  
 
         //Create the issue
-        issues[gitHubIssueLink] = Issue(gitHubIssueLink, company, bountyValue, tokenContract, techStacks, true); 
+        issues[gitHubIssueLink] = Issue(msg.sender, gitHubIssueLink, company, bountyValue, tokenContract, techStacks, true); 
 
         // console.log("ISSUE ", issues[gitHubIssueLink]);
 
@@ -60,10 +61,42 @@ contract Merge {
         emit IssueCreationSuccessful(msg.sender, bountyValue);  
     }
 
+    /// @notice Allow a developer to register
+    /// @dev Adds the developers github username in a mapping to their address
+    /// @param gitHubUserName the developers github user name
     function addDeveloper(string memory gitHubUserName) public {
         require(developers[gitHubUserName] == address(0), "This github user already registered");
         developers[gitHubUserName] = msg.sender;
         emit DeveloperRegistered(msg.sender, gitHubUserName);
+    }
+
+
+    /// @notice Allow a issue creator to release funds to the github user who solves the issue
+    /// @dev Transfers the native token bounty to the developer and deletes the issue from mapping
+    /// @param gitHubUserName the developers github user name
+    /// @param gitHubIssueLink the github issue which was solved
+    function payout(string memory gitHubUserName, string memory gitHubIssueLink) public {
+        require(developers[gitHubUserName] != address(0), "Developer with this user doesn't exist");
+        require(issues[gitHubIssueLink].active == true, "This issue doesn't exist");
+        require(issues[gitHubIssueLink].creator == msg.sender, "Only the issue creator can release the bounty");
+
+        //Pay the developer
+        address bountyTokenContract = issues[gitHubIssueLink].tokenContract;
+        uint256 bountyAmount = issues[gitHubIssueLink].bountyValue;
+
+        address developerAddress = developers[gitHubUserName];
+
+        ERC20Interface = ERC20(bountyTokenContract);
+        ERC20Interface.transfer(developerAddress, bountyAmount);
+
+        //Remove the saved issue
+
+        //TODO: Maybe we can save completed tasks, or have a counter of the completed tasks
+        // Or store the stats of the amount of closed tasks for each framework/language
+        delete issues[gitHubIssueLink];
+
+        //Update the developers stats
+        //TODO: A V2 feature
     }
 
     function getIssueCompany(string memory gitHubIssueLink) public view returns (string memory) {

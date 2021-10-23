@@ -32,6 +32,7 @@ describe("Merge", () => {
     )).to.be.revertedWith("Insufficient allowance");
   })
 
+  //TODO: Need to complete this test
   it("Should fail when contract address provided is not an ERC20", async () => {})
 
   it("Cannot use the same issue more than once at any given time", async () => {
@@ -118,9 +119,9 @@ describe("Merge", () => {
   it("Register a developer successfully", async () => {
     const gitHubUser = "darshanraju";
 
-    await merge.addDeveloper(gitHubUser);
+    await merge.connect(addr1).addDeveloper(gitHubUser);
 
-    expect(await merge.developers(gitHubUser)).to.equal(deployer.address);
+    expect(await merge.developers(gitHubUser)).to.equal(addr1.address);
   })
 
   it("Cannot register the same gitHub username twice", async () => {
@@ -131,5 +132,37 @@ describe("Merge", () => {
     expect(await merge.developers(gitHubUser)).to.equal(deployer.address);
 
     await expect(merge.addDeveloper(gitHubUser)).to.be.revertedWith("This github user already registered");
+  })
+
+  it("Cannot payout to a developer who doesn't exist (invalid github username)", async () => {
+    const gitHubUser = "johnSmith";
+    const gitHubIssueLink = "www.google.com";
+
+    await expect(merge.payout(gitHubUser, gitHubIssueLink)).to.be.revertedWith("Developer with this user doesn't exist")
+  });
+
+  it("Cannot payout to a developer when the issue is invalid", async () => {
+    const gitHubUser = "darshanraju";
+    const gitHubIssueLink = "www.invalidIssue.com";
+
+    await expect(merge.payout(gitHubUser, gitHubIssueLink)).to.be.revertedWith("This issue doesn't exist")
+  })
+
+  it("only the creator of the issue can release bounty", async () => {
+    const gitHubUser = "darshanraju";
+    const gitHubIssueLink = "www.google.com";
+
+    await expect(merge.connect(addr1).payout(gitHubUser, gitHubIssueLink)).to.be.revertedWith("Only the issue creator can release the bounty")
+  })
+
+  it("Successfully payout the developer", async () => {
+    expect(await morphwareToken.balanceOf(addr1.address)).to.equal(0);
+
+    const gitHubUser = "darshanraju";
+    const gitHubIssueLink = "www.google.com";
+
+    await merge.payout(gitHubUser, gitHubIssueLink);
+
+    expect(await morphwareToken.balanceOf(addr1.address)).to.equal(10000);
   })
 });
