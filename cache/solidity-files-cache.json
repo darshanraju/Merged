@@ -36,8 +36,8 @@
       ]
     },
     "O:\\Merged\\contracts\\Merge.sol": {
-      "lastModificationDate": 1634970990346,
-      "contentHash": "503bdccb882e73f108be27c615cc9370",
+      "lastModificationDate": 1634980201029,
+      "contentHash": "5fe011c99ce32f80b3459c0f87cb8b53",
       "sourceName": "contracts/Merge.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -212,6 +212,115 @@
       ],
       "artifacts": [
         "Context"
+      ]
+    },
+    "O:\\Merged\\contracts\\ColorCoin.sol": {
+      "lastModificationDate": 1634976222807,
+      "contentHash": "7548caf1f49516e4761f9c776d8b76e8",
+      "sourceName": "contracts/ColorCoin.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "ColorCoin"
+      ]
+    },
+    "O:\\Merged\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\ERC20Burnable.sol": {
+      "lastModificationDate": 1634970602477,
+      "contentHash": "e888f903b629e3ced11f5d1f85cda823",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../ERC20.sol",
+        "../../../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20Burnable"
+      ]
+    },
+    "O:\\Merged\\contracts\\MorphwareToken.sol": {
+      "lastModificationDate": 1634976196102,
+      "contentHash": "ea8a481e5fb3b41ab017c59414e7113e",
+      "sourceName": "contracts/MorphwareToken.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "MorphwareToken"
       ]
     }
   }

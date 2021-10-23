@@ -34,10 +34,15 @@ contract Merge {
     /// @param tokenContract the ERC20 contract address
     /// @param techStacks languages and frameworks required to solve the the related issue
     function createIssue(string memory gitHubIssueLink, string memory company, uint32 bountyValue, address tokenContract, string[4] memory techStacks) public {
-        require(issues[gitHubIssueLink].active !=  false, "This issue already exists");
+        require(issues[gitHubIssueLink].active ==  false, "This issue already exists");
 
         //Map tokenContract to IERC20
         ERC20Interface  = ERC20(tokenContract);
+
+        uint256 allowance = ERC20Interface.allowance(msg.sender, address(this));
+
+
+        console.log("Allowance: ", allowance);
 
         //Verify sender has sufficient allowance for bounty
         require(bountyValue <= ERC20Interface.allowance(msg.sender, address(this)), "Insufficient allowance");
