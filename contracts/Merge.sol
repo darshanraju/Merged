@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
-// import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";  
+
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
 
@@ -22,7 +22,8 @@ contract Merge {
     mapping(string => address) public developers;
     mapping(string => Issue) public issues;
 
-    event IssueCreationSuccessful(address indexed issueCreator, uint256 bounty);  
+    event IssueCreationSuccessful(address indexed issueCreator, uint256 bounty); 
+    event DeveloperRegistered(address indexed developer, string indexed githubUser); 
 
     constructor() {}
 
@@ -41,11 +42,11 @@ contract Merge {
 
         uint256 allowance = ERC20Interface.allowance(msg.sender, address(this));
 
-
         console.log("Allowance: ", allowance);
+        console.log("Value: ", gitHubIssueLink);
 
         //Verify sender has sufficient allowance for bounty
-        require(bountyValue <= ERC20Interface.allowance(msg.sender, address(this)), "Insufficient allowance");
+        require(bountyValue <= allowance, "Insufficient allowance");
 
         //Transfer funds to the contract
         ERC20Interface.transferFrom(msg.sender, address(this), bountyValue);  
@@ -53,8 +54,19 @@ contract Merge {
         //Create the issue
         issues[gitHubIssueLink] = Issue(gitHubIssueLink, company, bountyValue, tokenContract, techStacks, true); 
 
+        // console.log("ISSUE ", issues[gitHubIssueLink]);
 
         //Emit successfull event
         emit IssueCreationSuccessful(msg.sender, bountyValue);  
+    }
+
+    function addDeveloper(string memory gitHubUserName) public {
+        require(developers[gitHubUserName] == address(0), "This github user already registered");
+        developers[gitHubUserName] = msg.sender;
+        emit DeveloperRegistered(msg.sender, gitHubUserName);
+    }
+
+    function getIssueCompany(string memory gitHubIssueLink) public view returns (string memory) {
+        return issues[gitHubIssueLink].company;
     }
 }
