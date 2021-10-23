@@ -25,6 +25,17 @@ const styles = makeStyles({
     fontWeight: 200,
     // padding: "20px"
   },
+  gitHubIconWrapper: {
+    width: "50%",
+    fontSize: "50px",
+  },
+  gitHubIcon: {
+    transition: "all 0.5s linear",
+    "&:hover": {
+      curser: "pointer",
+      color: "white",
+    },
+  },
 });
 
 //Issues collums = Company | Stacks | Bounty | howManyPeopleForked? | deadline?
@@ -143,9 +154,13 @@ const IssuesTable = () => {
     return (
       <IconButton
         onClick={() => window.open(cellData)}
-        style={{ width: "50%", fontSize: "50px" }}
+        className={classes.gitHubIconWrapper}
       >
-        <GitHubIcon fontSize="inherit" color="secondary" />
+        <GitHubIcon
+          className={classes.gitHubIcon}
+          fontSize="inherit"
+          color="secondary"
+        />
       </IconButton>
     );
   };
