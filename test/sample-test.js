@@ -1,19 +1,15 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Greeter", function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+describe("Registry", () => {
+  let deployer, merge;
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
-
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
-
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
-
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+  before(async () => {
+    [deployer, addr1, addr2] = await ethers.getSigners();
+    const MergeFactory = await ethers.getContractFactory("Merge");
+    merge = await MergeFactory.deploy();
+    await merge.deployed();
   });
+
+  it("should set the state variables on deployment", async () => {});
 });

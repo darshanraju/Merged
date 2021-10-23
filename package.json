@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@openzeppelin/contracts": "^4.3.2",
     "react-virtualized": "^9.22.3"
   }
 }
