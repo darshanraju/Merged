@@ -1,15 +1,15 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/home/darshan/Desktop/Merged/contracts/ColorCoin.sol": {
-      "lastModificationDate": 1634980329031,
-      "contentHash": "79527abeff1bafa8f1afba9068563ab4",
+    "O:\\Merged\\contracts\\ColorCoin.sol": {
+      "lastModificationDate": 1634976222807,
+      "contentHash": "7548caf1f49516e4761f9c776d8b76e8",
       "sourceName": "contracts/ColorCoin.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -37,15 +37,15 @@
         "ColorCoin"
       ]
     },
-    "/home/darshan/Desktop/Merged/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-      "lastModificationDate": 1634980351367,
+    "O:\\Merged\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
+      "lastModificationDate": 1634970602476,
       "contentHash": "2cd550cedf51b8d294607dad5023d717",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -75,15 +75,15 @@
         "ERC20"
       ]
     },
-    "/home/darshan/Desktop/Merged/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1634980353043,
+    "O:\\Merged\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
+      "lastModificationDate": 1634970602540,
       "contentHash": "0eac3e1a83ee62326ca007811285b274",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -109,15 +109,15 @@
         "IERC20"
       ]
     },
-    "/home/darshan/Desktop/Merged/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
-      "lastModificationDate": 1634980353099,
+    "O:\\Merged\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
+      "lastModificationDate": 1634970602540,
       "contentHash": "aa1be06992a99bb7393b26a6af3c4dfb",
       "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -145,15 +145,15 @@
         "IERC20Metadata"
       ]
     },
-    "/home/darshan/Desktop/Merged/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1634980350339,
+    "O:\\Merged\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1634970602463,
       "contentHash": "851485d5b925529b1a2f34a0be077891",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -179,15 +179,15 @@
         "Context"
       ]
     },
-    "/home/darshan/Desktop/Merged/contracts/MorphwareToken.sol": {
-      "lastModificationDate": 1634980329031,
-      "contentHash": "eff091201dc4e5771e6f4e8000af03cf",
+    "O:\\Merged\\contracts\\MorphwareToken.sol": {
+      "lastModificationDate": 1634976196102,
+      "contentHash": "ea8a481e5fb3b41ab017c59414e7113e",
       "sourceName": "contracts/MorphwareToken.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -215,15 +215,15 @@
         "MorphwareToken"
       ]
     },
-    "/home/darshan/Desktop/Merged/contracts/Merge.sol": {
-      "lastModificationDate": 1634985273680,
-      "contentHash": "4efe6b12b016c545e330966889e84dec",
+    "O:\\Merged\\contracts\\Merge.sol": {
+      "lastModificationDate": 1635021480829,
+      "contentHash": "6ebf2db3e39c21fcf3eb3a074a6a4830",
       "sourceName": "contracts/Merge.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {
@@ -252,15 +252,15 @@
         "Merge"
       ]
     },
-    "/home/darshan/Desktop/Merged/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1634980366003,
+    "O:\\Merged\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1633675551074,
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
           "optimizer": {
-            "enabled": false,
+            "enabled": true,
             "runs": 200
           },
           "outputSelection": {

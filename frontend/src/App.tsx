@@ -1,12 +1,9 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/styles";
 import React, { useEffect } from "react";
-import Web3 from "web3";
 import "./App.css";
 import Hero from "./components/Hero";
-// import StickyHeadTable from "./components/Issues";
 import IssuesTable from "./components/IssuesTable";
-import Statistics from "./components/Statistics";
 import ContractsProvider from "./providers/ContractProvider";
 import { theme } from "./providers/ThemeProvider";
 import init from "./Web3Client";

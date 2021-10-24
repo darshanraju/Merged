@@ -11,8 +11,6 @@ const init = async () => {
 
   const web3 = new Web3(ropsteinEndpoint);
 
-  //   let provider = window.ethereum;
-
   if (typeof provider !== "undefined") {
     provider
       .request({ method: "eth_requestAccounts" })
@@ -47,12 +45,6 @@ export const getAccount = async () => {
     } catch (error) {
       console.log("Error: ", error);
     }
-
-    //   .then((accounts: any) => {
-    //     console.log("accounts: ", accounts);
-    //   })
-    //   .catch((error: any) => {
-    //   });
   }
 };
 

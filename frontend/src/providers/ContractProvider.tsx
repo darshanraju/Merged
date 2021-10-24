@@ -14,9 +14,9 @@ interface IContracts {
 
 export const ContractsContext = React.createContext({} as IContracts);
 
-type registerDeveloper = () => Promise<void>;
+type registerDeveloper = (gitHubUserName: string) => Promise<void>;
 type createIssue = (issueArgs: ICreateIssue) => Promise<void>;
-type payDeveloper = () => Promise<void>;
+type payDeveloper = (payDeveloperArgs: IPayout) => Promise<void>;
 
 interface ICreateIssue {
   gitHubIssueLink: string;
@@ -24,6 +24,11 @@ interface ICreateIssue {
   bountyValue: number;
   tokenContract: string;
   techStacks: Array<string>;
+}
+
+interface IPayout {
+  gitHubUserName: string;
+  gitHubIssueLink: string;
 }
 
 const ContractsProvider: React.FC = ({ children }) => {
@@ -86,8 +91,25 @@ const ContractsProvider: React.FC = ({ children }) => {
       )
       .send({ from: account });
   };
-  const payDeveloper = async () => {};
-  const registerDeveloper = async () => {};
+
+  const registerDeveloper = async (gitHubUserName: string) => {
+    if (!MergeContract) {
+      console.log("MergeContract not defined");
+      return;
+    }
+    MergeContract.methods.addDeveloper(gitHubUserName).send({ from: account });
+  };
+
+  const payDeveloper = async ({ gitHubUserName, gitHubIssueLink }: IPayout) => {
+    if (!MergeContract) {
+      console.log("MergeContract not defined");
+      return;
+    }
+
+    MergeContract.methods
+      .payout(gitHubUserName, gitHubIssueLink)
+      .send({ from: account });
+  };
 
   const contractsProvider: IContracts = {
     mergeContract: {
