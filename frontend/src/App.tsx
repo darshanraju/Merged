@@ -7,9 +7,9 @@ import Hero from "./components/Hero";
 // import StickyHeadTable from "./components/Issues";
 import IssuesTable from "./components/IssuesTable";
 import Statistics from "./components/Statistics";
+import ContractsProvider from "./providers/ContractProvider";
 import { theme } from "./providers/ThemeProvider";
-
-declare let window: any;
+import init from "./Web3Client";
 
 const styles = makeStyles(() =>
   createStyles({
@@ -29,32 +29,18 @@ const App = () => {
   const classes = styles();
 
   useEffect(() => {
-    const ropsteinEndpoint =
-      "wss://ropsten.infura.io/ws/v3/1f8da82842b144fd8b0677f547a37182";
-
-    const web3 = new Web3(ropsteinEndpoint);
-
-    let provider = window.ethereum;
-
-    if (typeof provider !== "undefined") {
-      provider
-        .request({ method: "eth_requestAccounts" })
-        .then((accounts: any) => {
-          console.log("accounts: ", accounts);
-        })
-        .catch((error: any) => {
-          console.log("Error: ", error);
-        });
-    }
+    init();
   }, []);
 
   return (
-    <div className={classes.root}>
-      <Grid container style={{ width: "80%" }}>
-        <Hero />
-        <IssuesTable />
-      </Grid>
-    </div>
+    <ContractsProvider>
+      <div className={classes.root}>
+        <Grid container style={{ width: "80%" }}>
+          <Hero />
+          <IssuesTable />
+        </Grid>
+      </div>
+    </ContractsProvider>
   );
 };
 
