@@ -15,10 +15,16 @@ interface IContracts {
 export const ContractsContext = React.createContext({} as IContracts);
 
 type registerDeveloper = (gitHubUserName: string) => Promise<void>;
-type createIssue = (issueArgs: ICreateIssue) => Promise<void>;
+type createIssue = ({
+  company,
+  bountyValue,
+  gitHubIssueLink,
+  techStacks,
+  tokenContract,
+}: ICreateIssue) => Promise<void>;
 type payDeveloper = (payDeveloperArgs: IPayout) => Promise<void>;
 
-interface ICreateIssue {
+export interface ICreateIssue {
   company: string;
   techStacks: Array<string>;
   gitHubIssueLink: string;
@@ -69,6 +75,8 @@ const ContractsProvider: React.FC = ({ children }) => {
     techStacks,
     tokenContract,
   }: ICreateIssue) => {
+    console.log("techSstacks : ", techStacks);
+
     if (!MergeContract) {
       console.log("MergeContract not defined");
       return;
@@ -76,12 +84,23 @@ const ContractsProvider: React.FC = ({ children }) => {
     let techStacksReduced;
     if (techStacks.length > 4) {
       techStacksReduced = techStacks.splice(0, 4);
+    } else {
+      techStacksReduced = techStacks;
     }
 
     //TODO: Validate that its an ERC20 token contract
     //TODO: Validate its an open githubIssue
 
-    MergeContract.methods
+    console.log("VALUES");
+    console.log("gitHubIssueLink", gitHubIssueLink);
+    console.log("company", company);
+    console.log("bountyValue", bountyValue);
+    console.log("tokenContract", tokenContract);
+    console.log("techStacksReduced", techStacksReduced);
+
+    console.log("Account: ", account);
+
+    return await MergeContract.methods
       .createIssue(
         gitHubIssueLink,
         company,
@@ -89,7 +108,7 @@ const ContractsProvider: React.FC = ({ children }) => {
         tokenContract,
         techStacksReduced
       )
-      .send({ from: account });
+      .call({ from: account });
   };
 
   const registerDeveloper = async (gitHubUserName: string) => {
@@ -97,7 +116,7 @@ const ContractsProvider: React.FC = ({ children }) => {
       console.log("MergeContract not defined");
       return;
     }
-    MergeContract.methods.addDeveloper(gitHubUserName).send({ from: account });
+    MergeContract.methods.addDeveloper(gitHubUserName).call({ from: account });
   };
 
   const payDeveloper = async ({ gitHubUserName, gitHubIssueLink }: IPayout) => {
@@ -108,7 +127,7 @@ const ContractsProvider: React.FC = ({ children }) => {
 
     MergeContract.methods
       .payout(gitHubUserName, gitHubIssueLink)
-      .send({ from: account });
+      .call({ from: account });
   };
 
   const contractsProvider: IContracts = {

@@ -9,7 +9,11 @@ const init = async () => {
   const ropsteinEndpoint =
     "wss://ropsten.infura.io/ws/v3/1f8da82842b144fd8b0677f547a37182";
 
-  const web3 = new Web3(ropsteinEndpoint);
+  // const provider = new Web3.providers.WebsocketProvider(conf.ethAddress);
+  const infuraProvider = new Web3.providers.WebsocketProvider(ropsteinEndpoint);
+  const web3 = new Web3(infuraProvider);
+
+  // const web3 = new Web3(ropsteinEndpoint);
 
   if (typeof provider !== "undefined") {
     provider
@@ -29,7 +33,8 @@ export const getMergeContract = async (web3: web3) => {
   const mergeContractABI: any = MergeContract.abi;
   const myContract = new web3.eth.Contract(
     mergeContractABI,
-    "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe"
+    // "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe"
+    "0x757754feCb95912279b3184a31fFF478492B40C5"
   );
   return myContract;
 };

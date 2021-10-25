@@ -1,5 +1,6 @@
-import React from "react";
-import { Field, Form } from "react-final-form";
+import React, { useContext } from "react";
+import { ContractsContext, ICreateIssue } from "../providers/ContractProvider";
+import { Form } from "react-final-form";
 import { TextField, Select } from "mui-rff";
 import {
   Button,
@@ -23,14 +24,18 @@ const techStacks = [
 ];
 
 const PostIssueForm = () => {
-  const required = (value: any) => (value ? undefined : "Required");
-  const onSubmit = (data: any) => {
-    console.log("FormData: ", data);
+  const contractService = useContext(ContractsContext);
+  const onSubmit = async (data: any) => {
+    const createIssue = data as ICreateIssue;
+    console.log("createIssue: ", createIssue);
+
+    const response = await contractService.mergeContract.createIssue(
+      createIssue
+    );
+    console.log("response: ", response);
   };
-  const [personName, setPersonName] = React.useState<string[]>([]);
 
   return (
-    // <div>
     <Form
       onSubmit={onSubmit}
       render={({ handleSubmit, form, submitting, pristine, values }) => (
@@ -52,7 +57,7 @@ const PostIssueForm = () => {
             />
             <Typography variant="body2">Tech Stacks</Typography>
             <Select
-              name="techStacksV2"
+              name="techStacks"
               multiple
               formControlProps={{ margin: "normal" }}
               renderValue={(selected: Array<string>) => (
@@ -69,7 +74,7 @@ const PostIssueForm = () => {
             </Select>
             <Typography variant="body2">GitHub Issue</Typography>
             <TextField
-              name="gitHubIssue"
+              name="gitHubIssueLink"
               required={true}
               type="text"
               variant="outlined"
@@ -123,7 +128,6 @@ const PostIssueForm = () => {
         </form>
       )}
     />
-    // </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import Logo from "../assets/Logo.png";
 import NavButtons from "./NavButtons";
