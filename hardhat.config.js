@@ -24,7 +24,7 @@ module.exports = {
     ropstein: {
       url: "https://ropsten.infura.io/v3/1f8da82842b144fd8b0677f547a37182",
       accounts: [
-        "cc5fb6d661b791851ad5cbbd9ca1611fd131acc03f1a66e03076d32c315cae72",
+        "",
       ],
       saveDeployments: true,
     },
