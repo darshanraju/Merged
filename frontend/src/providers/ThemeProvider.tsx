@@ -67,6 +67,13 @@ export const theme: ThemeProps = createTheme({
   typography: {
     // eslint-disable-next-line quotes
     fontFamily: ['"Noto Sans Mono"', "monospace"].join(","),
+    h3: {
+      // eslint-disable-next-line quotes
+      // fontFamily: ['"Ubuntu"', "Open Sans"].join(","),
+      fontFamily: ['"Noto Sans Mono"', "monospace"].join(","),
+      fontSize: "30px",
+      color: "#5B676D",
+    },
     h5: {
       // eslint-disable-next-line quotes
       // fontFamily: ['"Ubuntu"', "Open Sans"].join(","),

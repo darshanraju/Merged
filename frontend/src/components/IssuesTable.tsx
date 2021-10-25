@@ -7,17 +7,27 @@ import {
   SortDirectionType,
 } from "react-virtualized";
 import "react-virtualized/styles.css";
-import { IconButton, Grid, makeStyles, Typography } from "@material-ui/core";
+import {
+  IconButton,
+  Grid,
+  makeStyles,
+  Typography,
+  Chip,
+} from "@material-ui/core";
 import { theme } from "../providers/ThemeProvider";
 import GitHubIcon from "@mui/icons-material/GitHub";
-
+import Stack from "@mui/material/Stack";
+import { ColorGen } from "../utils";
 // import "./IssuesTable.css";
 const styles = makeStyles({
+  muiChipRoot: {
+    fontSize: "1.2rem",
+  },
   tableHeader: {
     color: "#61dafb",
     fontSize: "50px",
     fontWeight: 600,
-    padding: "50px",
+    // padding: "50px",
   },
   tableRow: {
     color: "white",
@@ -26,7 +36,7 @@ const styles = makeStyles({
     // padding: "20px"
   },
   gitHubIconWrapper: {
-    width: "50%",
+    // width: "50%",
     fontSize: "50px",
   },
   gitHubIcon: {
@@ -121,10 +131,21 @@ const IssuesTable = () => {
           -
         </span>
       );
-    const stacks = cellData.join(" | ");
+    const stacks: Array<string> = cellData;
     return (
       <span className="dib o-40 no-select" style={{ width: "100%" }}>
-        {stacks}
+        <Typography variant="h2">
+          <Stack direction="row" spacing={1}>
+            {stacks.map((stack) => (
+              <Chip
+                className={classes.muiChipRoot}
+                label={stack}
+                color="default"
+                onClick={() => {}}
+              />
+            ))}
+          </Stack>
+        </Typography>
       </span>
     );
   };
@@ -216,7 +237,7 @@ const IssuesTable = () => {
                   label="Stacks"
                   cellRenderer={stacksCell}
                   dataKey="stacks"
-                  width={width * 0.5}
+                  width={width * 0.4}
                 />
                 <Column
                   label="Bounty"
@@ -228,7 +249,7 @@ const IssuesTable = () => {
                   label="Solve"
                   cellRenderer={gitHubIssue}
                   dataKey="gitHubIssue"
-                  width={width * 0.1}
+                  width={width * 0.2}
                 />
               </Table>
             )}

@@ -21,6 +21,9 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@openzeppelin/contracts": "^4.3.2",
+    "final-form": "^4.20.4",
+    "mui-rff": "^5.0.0",
+    "react-final-form": "^6.5.7",
     "react-virtualized": "^9.22.3",
     "web3-typescript-typings": "^0.10.2"
   }

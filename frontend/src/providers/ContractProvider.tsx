@@ -19,11 +19,11 @@ type createIssue = (issueArgs: ICreateIssue) => Promise<void>;
 type payDeveloper = (payDeveloperArgs: IPayout) => Promise<void>;
 
 interface ICreateIssue {
-  gitHubIssueLink: string;
   company: string;
-  bountyValue: number;
-  tokenContract: string;
   techStacks: Array<string>;
+  gitHubIssueLink: string;
+  tokenContract: string;
+  bountyValue: number;
 }
 
 interface IPayout {

@@ -32,7 +32,7 @@ const App = () => {
   return (
     <ContractsProvider>
       <div className={classes.root}>
-        <Grid container style={{ width: "80%" }}>
+        <Grid container style={{ width: "80%", maxWidth: "1900px" }}>
           <Hero />
           <IssuesTable />
         </Grid>

@@ -1,6 +1,7 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import Logo from "../assets/Logo.png";
+import NavButtons from "./NavButtons";
 
 interface IStats {
   stat: number;
@@ -55,6 +56,7 @@ const Hero = () => {
           Merged
         </Typography>
       </Grid>
+      <NavButtons />
       <Grid item xs={8}>
         <Grid item xs={12} style={{ paddingBottom: "40px" }}>
           <Typography
